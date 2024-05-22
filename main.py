@@ -75,18 +75,30 @@ class MainWindow():
         if len(self.sort_list) != 3:
             messagebox.showerror(title = '错误', message = '选择的排序算法数只能为3')
             return
+        if self.datanums > 5e5:
+            messagebox.showerror(title= '错误', message = '数据量过大, 请保持在5e5范围内')
+            return
+        visual_n = False
+        if self.datanums >= 100:
+            visual_n = messagebox.askyesnocancel(title = '警告',
+                                               message = '当前排序数据数量过大,继续可视化可能需要等待过长时间或程序崩溃\n'+
+                                                                '是否跳过可视化过程直接返回排序时间?',
+                                               icon = messagebox.WARNING)
+            if visual_n == None:
+                return
         self.dataset = NewData(self.datanums, TypeDict[self.datatype.get()])
         self.times = Visualization(dataset = self.dataset,
                                    SortNum = self.sort_list,
                                    interval = animation_interval,
-                                   SortDict = SortDict)
+                                   SortDict = SortDict,
+                                   visual = not visual_n)
 
-        messagebox.showinfo(title = '算法结束', message = '算法1用时:{}ms\n \
-                                                             算法2用时:{}ms\n \
-                                                             算法3用时:{}ms\n'.format(*self.times))
+        messagebox.showinfo(title = '算法结束', message = ('算法1用时:{:.2f}ms\n'+
+                                                         '算法2用时:{:.2f}ms\n'+
+                                                         '算法3用时:{:.2f}ms\n').format(*list(map(lambda x: x*1000, self.times))))
     
     def Exit(self):
-        self.root.quit
+        self.root.quit()
 
 if __name__ == '__main__':
     root = tk.Tk()

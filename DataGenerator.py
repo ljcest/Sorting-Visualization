@@ -9,9 +9,9 @@ def generate_original_data(DataCount, Dtype = 'random'): #generate original data
             random.shuffle(data_list)
         case 'almost-sorted': #sorted data except two points
             data_list = list(range(1,DataCount + 1))
-            a, b = random.randint(DataCount), random.randint(DataCount)
+            a, b = random.randint(0,DataCount), random.randint(0,DataCount)
             while a == b:
-                b = random.randint(DataCount)
+                b = random.randint(0,DataCount)
             data_list[a], data_list[b] = data_list[b], data_list[a]
         case 'reverse': #reverse sorted data
             data_list = list(range(DataCount,-1,-1))

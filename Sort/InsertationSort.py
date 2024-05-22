@@ -1,20 +1,33 @@
 from copy import deepcopy
 from .Data import Data
 
-def InsertationSort(Dataset):
-    # initial the frame
-    frame = [Dataset]
+def InsertationSort(Dataset, visual = True):
+    '''insertation sort function'''
+    #FRAME START
+    frame = None
+    if visual:
+        frame = [Dataset]
+    #FRAME END
     ds = deepcopy(Dataset)
 
     for i in range(1, Data.DataCount):
-        frame.append(deepcopy(ds))
-        frame[-1][i].SetColor('r')
+        #FRAME START
+        if visual:
+            frame.append(deepcopy(ds))
+            frame[-1][i].SetColor('r')
+        #FRAME END
         for j in range(i - 1, -1, -1): #from the tail to the top
             if ds[j].value > ds[j+1].value:
                 ds[j], ds[j+1] = ds[j+1], ds[j]
-                frame.append(deepcopy(ds))
-                frame[-1][j].SetColor('k')
+                #FRAME START
+                if visual:
+                    frame.append(deepcopy(ds))
+                    frame[-1][j].SetColor('k')
+                #FRAME END
             else:
                 break
-    frame.append(deepcopy(ds))
+    #FRAME START
+    if visual:
+        frame.append(deepcopy(ds))
+    #FRAME END
     return frame

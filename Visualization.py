@@ -8,11 +8,11 @@ from Sort.InsertationSort import InsertationSort
 from Sort.SelectionSort import SelectionSort
 from Sort.QuickSort import QuickSort_Normal
 from Sort.QuickSort import QuickSort_ThreeRoad
-#from Sort.MergeSort import MergeSort
+from Sort.MergeSort import MergeSort
 
 
 
-def Visualization(dataset, SortNum, interval, SortDict):
+def Visualization(dataset, SortNum, interval, SortDict, visual = True):
     '''Use pyplot ans animation form matplotlib to complete Visualization on dataset and SortNum'''
     Figs = []
     frames = []
@@ -26,9 +26,14 @@ def Visualization(dataset, SortNum, interval, SortDict):
     
     for num in SortNum: #insert frames generated from different sort algorithm
         time_s = time.time()
-        frames.append(globals()[SortDict[num]](dataset))
+        #call the sorting functions using globals dict
+        frames.append(globals()[SortDict[num]](dataset, visual))
         time_t = time.time()
         times.append(time_t - time_s)
+    
+    # return directly if without visual
+    if not visual:
+        return times
     
     def update(count):
         bars = []
