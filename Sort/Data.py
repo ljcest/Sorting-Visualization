@@ -6,7 +6,7 @@ class Data(object):
         self.value = value
         self.SetColor()
     
-    def SetColor(self, rgba = 0):
+    def SetColor(self, rgba = None):
         if not rgba:
             self.color = (1,
                          1 - self.value/(self.DataCount*2),

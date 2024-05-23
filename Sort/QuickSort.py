@@ -17,7 +17,7 @@ def QuickSort_Normal(Dataset, visual = True):
     return frame
     #FRAME END
 
-def QuickSort_ThreeRoad(Dataset, visual = True):
+def QuickSort_3Way(Dataset, visual = True):
     '''initial the frame'''
     #FRAME START
     frame = None

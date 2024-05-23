@@ -3,13 +3,15 @@ from tkinter import ttk
 from tkinter import messagebox
 from DataGenerator import NewData
 from Visualization import Visualization
+import sys
 
+sys.setrecursionlimit(int(1e8))
 animation_interval = 10
 SortDict = {1:'BubbleSort',
             2:'InsertationSort',
             3:'SelectionSort',
             4:'QuickSort_Normal',
-            5:'QuickSort_ThreeRoad',
+            5:'QuickSort_3Way',
             6:'MergeSort'}
 
 TypeDict = {1:'random',
@@ -64,6 +66,9 @@ class MainWindow():
 
     #command function of ButtonStart
     def Start(self):
+        if self.datatype.get() not in TypeDict.keys():
+            messagebox.showerror(title = '错误', message = '未选择排序类型')
+            return
         try:
             self.datanums = int(self.datanums_str.get())
         except:

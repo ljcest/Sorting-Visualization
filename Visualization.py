@@ -7,7 +7,7 @@ from Sort.BubbleSort import BubbleSort
 from Sort.InsertationSort import InsertationSort
 from Sort.SelectionSort import SelectionSort
 from Sort.QuickSort import QuickSort_Normal
-from Sort.QuickSort import QuickSort_ThreeRoad
+from Sort.QuickSort import QuickSort_3Way
 from Sort.MergeSort import MergeSort
 
 

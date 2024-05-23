@@ -14,7 +14,7 @@ def generate_original_data(DataCount, Dtype = 'random'): #generate original data
                 b = random.randint(0,DataCount)
             data_list[a], data_list[b] = data_list[b], data_list[a]
         case 'reverse': #reverse sorted data
-            data_list = list(range(DataCount,-1,-1))
+            data_list = list(range(DataCount,0,-1))
         case 'few-unique': #data with only 4 kind of values
             d = DataCount // 4
             data_list += [d] * d
